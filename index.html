@@ -1,0 +1,333 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#176b45"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="assets/gym-machines-guide.png">
+<title>尹浩宇健身打卡</title>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="equipment.css"><link rel="stylesheet" href="rewards.css"><link rel="stylesheet" href="flexible.css"><link rel="stylesheet" href="smart.css">
+<style>.verified-equipment{margin:12px 0 16px;padding:12px 14px;border-radius:12px;background:#edf4e6;color:#294338;font-size:12px;line-height:1.7}</style>
+</head>
+<body>
+<main class="app">
+<header>
+<div>
+<p class="eyebrow">MUSCLE BUILDING PLAN</p>
+<h1>尹浩宇的增肌计划</h1>
+<p id="today">
+</p>
+</div>
+<div class="streak">
+<strong id="streak">0</strong>
+<span>连续天数</span>
+</div>
+</header>
+<section class="profile card">
+<div>
+<span>用户</span>
+<b>尹浩宇 · 男</b>
+</div>
+<div>
+<span>年龄</span>
+<b>25 岁</b>
+</div>
+<div>
+<span>身高 / 体重</span>
+<b>178cm / 73kg</b>
+</div>
+<div>
+<span>目标</span>
+<b>增肌塑形 · 练出痕迹</b>
+</div>
+</section>
+<section class="hero card">
+<div>
+<span class="tag" id="statusTag">今日待完成</span>
+<h2>唤燃星固定器械计划，可按当天状态自由切换</h2>
+<p>目标：增肌＋减脂塑形。前两周先熟悉器械与动作，每次力量训练后按体力完成对应有氧。</p>
+</div>
+<button id="checkinBtn">完成今日打卡</button>
+</section>
+<nav class="tabs">
+<button class="tab active" data-tab="training">训练计划</button>
+<button class="tab" data-tab="cardio">有氧</button>
+<button class="tab" data-tab="diet">饮食</button>
+<button class="tab" data-tab="tracking">记录</button>
+</nav>
+<section id="training" class="tab-page active">
+<section class="card panel today-workout"><div class="today-head"><div><p class="eyebrow">CHOOSE TODAY</p><h2 id="nextTitle">今日训练</h2><p id="nextMeta" class="guide"></p></div><div class="remaining"><strong id="hammerLeft">0</strong><span>累计训练</span></div></div><div class="session-choices"><label class="plan-choice">今天实际想练<select id="planChoice"><option value="0">胸＋三头</option><option value="1">背＋二头</option><option value="2">腿＋肩</option><option value="3">恢复训练 / 状态不好</option><option value="4">完全自由训练 / 自己组合</option></select></label><label class="plan-choice">本次训练地点<select id="sessionGymChoice"><option>铁锤健身·常青藤</option><option>唤燃星24小时·许坦东街店</option></select></label></div><div class="pain-alert"><b>任何部位不舒服都可以马上换，不必完成原计划</b><span>肩、背、腰、膝、肘、腕或其他部位疼痛时：停止引发不适的动作，再选择无痛替代、跳过或切换计划。尖锐痛、疼痛持续加重、明显肿胀或活动受限时停止训练；胸闷、呼吸困难、眩晕或放射痛应及时就医。</span></div><section class="warmup-panel"><div class="warmup-head"><div><p class="eyebrow">PRE-WORKOUT</p><h3 id="warmupTitle">练前完整热身</h3></div><strong id="warmupProgress">0/4</strong></div><div id="warmupTracker" class="warmup-tracker"></div><p class="warmup-rule">热身只做到身体发热、关节活动顺畅，不做到力竭；正式训练的第一项仍从轻重量开始。</p></section><div id="setTracker" class="set-tracker"></div><div id="postCardio" class="post-cardio"></div><button id="finishWorkout" class="secondary" type="button">保存实际完成内容并打卡</button></section>
+<section class="card panel transition-plan"><p class="eyebrow">TRAINING LOOP</p><h2>训练循环参考</h2><div class="visit-plan"><span><b>训练 A</b> 胸＋三头＋坡度走</span><span><b>训练 B</b> 背＋二头＋爬楼机</span><span><b>训练 C</b> 腿＋肩＋轻松走</span></div><p class="guide">不绑定星期，也不强制按顺序；打开网页后按当天状态选择。现场找不到器械时，直接在动作卡中选择替代动作；身体不舒服时可随时切换训练。</p></section>
+<section class="card panel equipment-profile"><div class="section-title"><div><p class="eyebrow">GYM EQUIPMENT</p><h2>健身房器械档案</h2></div><label>正在设置<select id="equipmentGym"><option>铁锤健身·常青藤</option><option>唤燃星24小时·许坦东街店</option></select></label></div><p class="guide">唤燃星许坦东街店已按你提供的现场视频预设。取消的器械不会再出现在该门店的动作备选中；以后机器有增减仍可手动修改。</p><p class="verified-equipment"><b>视频已核对：</b>多角度推胸、约5类高位下拉、多种划船、哈克、45°倒蹬、臀推、卷腹、垂直举腿、跑步机和爬楼机。该店没有椭圆机和单车。</p><div id="equipmentChecks" class="equipment-checks"></div><div class="equipment-actions"><button id="equipmentAll" type="button">全部都有</button><button id="equipmentNone" class="text-btn" type="button">重新核对</button></div></section>
+<section class="card panel notice">
+<b>训练规则</b>
+<p>前两周每个动作先做1–2组轻重量热身，正式训练可比页面建议少做1组。保持约2–3次余力，组间休息90–150秒；动作稳定后再逐步加量。每次力量后按体力完成15–30分钟有氧。</p>
+</section>
+<div class="plan-grid">
+<article class="card plan">
+<span class="plan-no">1</span>
+<h2>胸 · 三头</h2>
+<p class="sub">优先固定器械，哑铃和史密斯作备选｜约60分钟</p>
+<ol>
+<li><b>挂片式上斜推胸</b><span>4组 × 8–10次｜把手对准上胸，肩胛贴垫</span></li>
+<li><b>挂片式平板推胸</b><span>4组 × 8–10次｜宽角度、下斜或插片式可现场替换</span></li>
+<li><b>蝴蝶机夹胸</b><span>3组 × 12–15次｜一体式夹胸飞鸟也可以</span></li>
+<li><b>坐姿臂屈伸机</b><span>3组 × 10–12次｜没有空位就改绳索下压</span></li>
+<li><b>绳索过顶臂屈伸</b><span>3组 × 10–12次｜上臂固定，肘朝前</span></li>
+</ol>
+</article>
+<article class="card plan">
+<span class="plan-no">2</span>
+<h2>背 · 二头</h2>
+<p class="sub">背宽、背厚与肱二头肌｜约60–70分钟</p>
+<ol>
+<li><b>分动式高位下拉</b><span>4组 × 8–10次｜单臂或双手轨迹均可选择</span></li>
+<li><b>Flex胸托划船</b><span>4组 × 8–10次｜胸贴垫，手肘向后拉</span></li>
+<li><b>轨道式俯身划船</b><span>3组 × 10–12次｜飞机拉背或分动划船可替换</span></li>
+<li><b>反向蝴蝶机</b><span>3组 × 12–15次｜练后束，不要耸肩</span></li>
+<li><b>绳索弯举</b><span>3组 × 10–12次｜手肘固定，不甩动身体</span></li>
+<li><b>哑铃锤式弯举</b><span>3组 × 10–12次｜掌心相对，缓慢放下</span></li>
+</ol>
+</article>
+<article class="card plan">
+<span class="plan-no">3</span>
+<h2>腿 · 肩</h2>
+<p class="sub">下肢基础与肩部轮廓｜约65–75分钟</p>
+<ol>
+<li><b>哈克深蹲机</b><span>4组 × 8–10次｜也可改45°倒蹬或斜蹲</span></li>
+<li><b>坐姿腿弯举机</b><span>3组 × 10–12次｜俯卧腿弯举可替换</span></li>
+<li><b>腿屈伸机</b><span>3组 × 10–15次｜顶端停顿，不踢甩重量</span></li>
+<li><b>器械臀推机</b><span>3组 × 8–12次｜顶部夹臀，不要顶腰</span></li>
+<li><b>挂片式推肩机</b><span>4组 × 8–10次｜插片式推肩可替换</span></li>
+<li><b>坐姿侧平举机</b><span>3组 × 12–15次｜挂片式飞肩可替换</span></li>
+<li><b>反向蝴蝶机</b><span>3组 × 12–15次｜一体式后束飞鸟也可以</span></li>
+</ol>
+</article>
+</div>
+<section class="card panel daily-abs">
+<span class="plan-no">每天可做</span>
+<h2>腹部训练 · 8–12分钟</h2>
+<p class="guide">每次任选1–2项：器械卷腹3×12–15、垂直举腿3×8–12、死虫式每侧3×10、平板支撑3×30–45秒。动作慢而稳定，不借力；明显酸痛时休息，不要每天练到力竭。</p>
+</section>
+<section class="card panel equipment-guide">
+<p class="eyebrow">HUANRAN EQUIPMENT GUIDE</p><h2>唤燃星许坦东街店 · 看图找器械</h2>
+<p class="guide">已按你的视频重新核对。下面每台都写了现场常用叫法和辨认特征；高清图用于认结构，颜色和品牌可能与现场略有不同。到店先看器械结构和运动轨迹，不要只看颜色。</p>
+<nav class="equipment-jumps" aria-label="器械分类"><a href="#equip-chest">胸</a><a href="#equip-back">背</a><a href="#equip-leg">腿</a><a href="#equip-shoulder">肩/三头</a><a href="#equip-abs">腹/综合</a></nav>
+
+<h3 class="equipment-group-title" id="equip-chest">胸部器械</h3>
+<div class="machine-grid">
+<article class="machine-card"><img src="assets/equipment/incline-press.webp" alt="挂片式上斜推胸机高清识别图" loading="lazy"><div><span class="machine-tag">胸 · 上胸</span><h3>挂片式上斜推胸机</h3><p><b>怎么认：</b>高靠背明显后仰，两侧有装杠铃片的银色长杆，把手从肩旁向前上方推出。</p><small>计划动作：挂片式上斜推胸</small></div></article>
+<article class="machine-card"><img src="assets/equipment/chest-press.webp" alt="挂片式平板推胸机高清识别图" loading="lazy"><div><span class="machine-tag">胸 · 中下胸</span><h3>平板 / 宽角度 / 下斜推胸机</h3><p><b>怎么认：</b>坐姿靠背较直，两边各有挂片杆和独立推臂。把手越低，越偏下胸。</p><small>现场有多台，空哪台就选同角度的</small></div></article>
+<article class="machine-card"><img src="assets/equipment/pec-deck.webp" alt="蝴蝶机夹胸和反向飞鸟机高清识别图" loading="lazy"><div><span class="machine-tag">胸 / 肩后束</span><h3>蝴蝶机夹胸 / 反向飞鸟</h3><p><b>怎么认：</b>中间一个座位，两侧长摆臂。面朝外夹胸；反过来面向靠背练肩后束。</p><small>一台机器两种练法</small></div></article>
+</div>
+
+<h3 class="equipment-group-title" id="equip-back">背部器械</h3>
+<div class="machine-grid">
+<article class="machine-card"><img src="assets/equipment/lat-pulldown.webp" alt="分动式高位下拉机高清识别图" loading="lazy"><div><span class="machine-tag">背 · 背阔肌</span><h3>分动式高位下拉机</h3><p><b>怎么认：</b>把手在头顶上方，座位前有固定大腿的压垫；左右推臂可以分别拉下。</p><small>店内约5种下拉，单臂或双手都可</small></div></article>
+<article class="machine-card"><img src="assets/equipment/flex-row.webp" alt="Flex胸托划船机高清识别图" loading="lazy"><div><span class="machine-tag">背 · 背厚</span><h3>Flex胸托划船机</h3><p><b>怎么认：</b>胸前有竖向软垫、脚下有踏板，坐好后把前方手柄拉向身体。</p><small>胸一直贴垫，不用腰甩</small></div></article>
+<article class="machine-card"><img src="assets/equipment/tbar-row.webp" alt="轨道式俯身划船机高清识别图" loading="lazy"><div><span class="machine-tag">背 · 划船</span><h3>轨道式俯身划船 / T杠划船</h3><p><b>怎么认：</b>身体向前俯在胸垫上，脚踩斜踏板，下方长推臂沿固定轨道抬起。</p><small>也可换飞机拉背或分动划船</small></div></article>
+</div>
+
+<h3 class="equipment-group-title" id="equip-leg">腿臀器械</h3>
+<div class="machine-grid">
+<article class="machine-card"><img src="assets/equipment/hack-squat.webp" alt="哈克深蹲机高清识别图" loading="lazy"><div><span class="machine-tag">腿 · 深蹲</span><h3>哈克深蹲机 / 斜蹲机</h3><p><b>怎么认：</b>人站在斜轨道上，背贴长垫、肩膀顶住两个肩垫，脚踩前方大踏板。</p><small>先确认两侧安全卡扣</small></div></article>
+<article class="machine-card"><img src="assets/equipment/leg-press.webp" alt="45度倒蹬机高清识别图" loading="lazy"><div><span class="machine-tag">腿 · 倒蹬</span><h3>45°倒蹬机</h3><p><b>怎么认：</b>人躺在斜靠背上，双脚向上蹬一个很大的踏板；重量片挂在滑车两侧。</p><small>膝盖方向跟脚尖一致</small></div></article>
+<article class="machine-card"><img src="assets/equipment/leg-curl.webp" alt="坐姿腿弯举机高清识别图" loading="lazy"><div><span class="machine-tag">腿 · 后侧</span><h3>坐姿腿弯举机</h3><p><b>怎么认：</b>大腿上方有压垫，小腿后方或脚踝处有滚筒，坐着把脚向后下方卷。</p><small>也可选择店内俯卧腿弯举</small></div></article>
+<article class="machine-card"><img src="assets/equipment/leg-extension.webp" alt="腿屈伸机高清识别图" loading="lazy"><div><span class="machine-tag">腿 · 大腿前侧</span><h3>腿屈伸机</h3><p><b>怎么认：</b>脚踝前方压着横向滚筒，坐姿把小腿从弯曲抬到接近伸直。</p><small>不要踢甩重量或锁死膝盖</small></div></article>
+<article class="machine-card"><img src="assets/equipment/hip-thrust.webp" alt="器械臀推机高清识别图" loading="lazy"><div><span class="machine-tag">臀 · 臀大肌</span><h3>器械臀推机</h3><p><b>怎么认：</b>低位长座垫配大脚踏板，髋部上方有横向软垫或绑带，两侧可以挂片。</p><small>顶部夹臀，不要用腰硬顶</small></div></article>
+</div>
+
+<h3 class="equipment-group-title" id="equip-shoulder">肩部和三头器械</h3>
+<div class="machine-grid">
+<article class="machine-card"><img src="assets/equipment/shoulder-press.webp" alt="挂片式推肩机高清识别图" loading="lazy"><div><span class="machine-tag">肩 · 前中束</span><h3>挂片式 / 插片式推肩机</h3><p><b>怎么认：</b>高靠背接近竖直，把手在耳朵两侧上方，动作是向头顶推起。</p><small>现场有挂片式和插片式多台</small></div></article>
+<article class="machine-card"><img src="assets/equipment/lateral-raise.webp" alt="坐姿侧平举机高清识别图" loading="lazy"><div><span class="machine-tag">肩 · 中束</span><h3>坐姿侧平举 / 飞肩机</h3><p><b>怎么认：</b>坐姿两侧各有肘垫或长摆臂，用手肘向身体两侧抬起。</p><small>不要耸肩，抬到接近肩高即可</small></div></article>
+<article class="machine-card"><img src="assets/equipment/seated-dip.webp" alt="坐姿臂屈伸机高清识别图" loading="lazy"><div><span class="machine-tag">三头</span><h3>坐姿臂屈伸 / 双杠下压机</h3><p><b>怎么认：</b>坐姿靠背前方有两根向下压的把手，旁边是插片配重塔。</p><small>肘朝后，肩膀不要向前顶</small></div></article>
+</div>
+
+<h3 class="equipment-group-title" id="equip-abs">腹部和综合器械</h3>
+<div class="machine-grid">
+<article class="machine-card"><img src="assets/equipment/ab-crunch.webp" alt="器械卷腹机高清识别图" loading="lazy"><div><span class="machine-tag">腹部</span><h3>器械卷腹机</h3><p><b>怎么认：</b>坐姿头顶或肩旁有把手，小腿前有滚筒，胸口和膝盖同时向中间收。</p><small>腰背不要猛烈甩动</small></div></article>
+<article class="machine-card"><img src="assets/equipment/vertical-knee-raise.webp" alt="垂直举腿双杠架高清识别图" loading="lazy"><div><span class="machine-tag">腹部 / 三头</span><h3>垂直举腿架 / 双杠架</h3><p><b>怎么认：</b>竖直背垫加两块肘垫，身体悬空屈膝；两侧长把手还能做双杠臂屈伸。</p><small>腹部每天可选，但不必练到力竭</small></div></article>
+<article class="machine-card"><img src="assets/equipment/functional-trainer.webp" alt="龙门架绳索器械高清识别图" loading="lazy"><div><span class="machine-tag">全身综合</span><h3>龙门架 / 双滑轮绳索</h3><p><b>怎么认：</b>左右两座配重塔，中间空间很大，滑轮高度可以上下移动并更换附件。</p><small>绳索下压、弯举、飞鸟都在这里做</small></div></article>
+</div>
+<details class="equipment-sources"><summary>高清识别图说明与来源</summary><p>参考图来自不同商用器械厂商和经销商的产品展示，用来帮助辨认结构，并不代表唤燃星使用相同品牌。现场照片和视频才是最终依据。</p><div><a href="https://www.f1-recreation.com.tw/products-categories/product/p1fw035/category_pathway-24" target="_blank" rel="noopener">推胸 / 哈克</a><a href="https://gymgear.com/products/perform-series-pec-fly-rear-delt" target="_blank" rel="noopener">蝴蝶机</a><a href="https://selectfitness.com/collections/lat-pulldown-machines" target="_blank" rel="noopener">下拉 / 倒蹬</a><a href="https://performbetter.co.uk/products/t-bar-row-chest-support" target="_blank" rel="noopener">划船</a><a href="https://truefitness.com/products/spl-seated-leg-curl/" target="_blank" rel="noopener">腿弯举</a><a href="https://www.freemotionfitness.com/strength-machine/lateral-raise/" target="_blank" rel="noopener">侧平举</a><a href="https://www.spiritcommercialfitness.com/product-page/abdominal-2" target="_blank" rel="noopener">卷腹</a></div></details>
+</section>
+<section class="card panel">
+<h2>重量进阶</h2>
+<p class="guide">选择“完成目标次数后还能规范做2次”的重量。连续两次完成全部次数后，上肢加1–2.5kg、下肢加2.5–5kg。若关节疼或动作变形，立即减重或停止。</p>
+</section>
+</section>
+<section id="cardio" class="tab-page">
+<div class="plan-grid two">
+<article class="card plan featured">
+<span class="plan-no">首选</span>
+<h2>坡度快走</h2>
+<ol>
+<li>
+<b>热身</b>
+<span>平路慢走5分钟</span>
+</li>
+<li>
+<b>主体</b>
+<span>速度4.5–5.5km/h，坡度5–8%，25–30分钟</span>
+</li>
+<li>
+<b>强度</b>
+<span>能说短句，不能轻松唱歌</span>
+</li>
+<li>
+<b>放松</b>
+<span>平路慢走5分钟</span>
+</li>
+</ol>
+</article>
+<article class="card plan">
+<span class="plan-no">替换</span>
+<h2>爬楼机</h2>
+<ol>
+<li>
+<b>热身</b>
+<span>3–4档，3分钟</span>
+</li>
+<li>
+<b>主体</b>
+<span>5–7档或约45–60步/分钟，15–20分钟</span>
+</li>
+<li>
+<b>姿势</b>
+<span>身体直立、脚掌踩实，扶手只保持平衡</span>
+</li>
+</ol>
+</article>
+</div>
+<section class="card panel notice"><b>唤燃星有氧器械</b><p>现场确认有跑步机和爬楼机，没有椭圆机、单车，也不安排游泳。胸三头或背二头后可二选一；腿肩后优先跑步机低坡走，不做高强度爬楼。</p></section>
+<section class="card panel notice">
+<b>力量训练后的固定有氧</b>
+<p><b>胸三头后：</b>跑步机速度4.8–5.5km/h、坡度6–10%、20–30分钟；或爬楼机5–7档、15–20分钟。<br><b>背二头后：</b>爬楼机5–7档或45–60步/分钟、15–20分钟；或跑步机速度4.8–5.6km/h、坡度6–10%、20–30分钟。<br><b>腿肩后：</b>跑步机速度4–4.8km/h、坡度0–3%、15–20分钟，不做高强度爬楼。<br>全程保持能说短句；若必须用手臂撑扶手，说明强度过高。膝盖不舒服时改平路3.8–4.5km/h走10–15分钟，仍不舒服就跳过有氧。</p>
+</section>
+</section>
+<section id="diet" class="tab-page">
+<section class="card panel notice">
+<b>增肌减脂塑形目标</b>
+<p>先从每天约2200–2400千卡试行，蛋白质约130–150g，饮水2–2.5L。目标是腰围缓慢下降、训练力量逐步上升；连续2周腰围不降且体重上升，每天减约150千卡。</p>
+</section>
+<div class="meal-grid">
+<article class="card meal">
+<span>早餐</span>
+<h2>高蛋白开场</h2>
+<p>燕麦60g＋牛奶300ml＋鸡蛋2个＋香蕉1根</p>
+</article>
+<article class="card meal">
+<span>午餐</span>
+<h2>主力正餐</h2>
+<p>米饭1.5–2碗＋鸡胸/瘦牛肉/鱼180–200g＋蔬菜2拳</p>
+</article>
+<article class="card meal">
+<span>训练前 1–2小时</span>
+<h2>补充能量</h2>
+<p>香蕉1根＋面包2片＋无糖酸奶，避免油炸和过饱</p>
+</article>
+<article class="card meal">
+<span>训练后 / 晚餐</span>
+<h2>恢复生长</h2>
+<p>米饭1.5碗＋鱼虾/鸡肉/瘦肉180–200g＋蔬菜；睡前可加牛奶</p>
+</article>
+</div>
+<section class="card panel">
+<h2>执行原则</h2>
+<p class="guide">每天至少3顿，每顿有一掌半左右的优质蛋白；主食不要取消。蛋白粉不是必需品，只有普通食物吃不够蛋白质时才考虑。睡眠尽量保证7–9小时。</p>
+</section>
+</section>
+<section id="tracking" class="tab-page">
+<section class="card panel reward-panel"><div class="reward-head"><div><p class="eyebrow">MOTIVATION</p><h2>晓峰训练积分</h2><p class="guide">认真完成比单纯打卡得分更多，同一天同类任务只计一次。</p></div><div class="points"><strong id="points">0</strong><span>积分</span></div></div><div class="level-line"><span id="levelName">青铜起步</span><span id="nextReward"></span></div><div class="progress"><i id="rewardProgress"></i></div><div class="reward-grid"><span>完成力量 <b>+20</b></span><span>完成练后有氧 <b>+10</b></span><span>完成腹部 <b>+5</b></span><span>连续打卡 <b>+5</b></span><span>身体周记录 <b>+10</b></span></div><div id="rewards" class="rewards"></div></section>
+<section class="card panel progress-panel"><div class="progress-head"><div><p class="eyebrow">PROGRESS</p><h2>力量与训练量趋势</h2></div><div class="progress-filters"><label>动作<select id="progressExercise"></select></label><label>指标<select id="progressMetric"><option value="best">最佳重量</option><option value="volume">训练容量</option></select></label></div></div><div class="progress-stats"><div><span>历史最佳</span><strong id="progressBest">0</strong><small>kg</small></div><div><span>最近重量</span><strong id="progressLast">0</strong><small>kg</small></div><div><span>完成次数</span><strong id="progressSessions">0</strong><small>次</small></div></div><div id="progressChart" class="progress-chart"></div><p id="progressHint" class="guide"></p></section>
+<section class="grid wearable-grid"><form id="wearableForm" class="card panel"><h2>小米手环运动消耗</h2><p class="guide">训练后打开小米运动健康，把“本次运动”数据填进来。</p><div class="form-row"><label>力量消耗（千卡）<input id="strengthKcal" type="number" min="0"></label><label>有氧消耗（千卡）<input id="cardioKcal" type="number" min="0"></label></div><div class="form-row"><label>平均心率（次/分）<input id="avgHr" type="number" min="30" max="220"></label><label>最高心率（次/分）<input id="maxHr" type="number" min="30" max="240"></label></div><label class="check-label"><input id="absDone" type="checkbox"> 今天完成腹部训练</label><button class="secondary">保存手环数据</button></form><section class="card panel calorie-summary"><h2>运动消耗统计</h2><div><span>今日</span><strong id="todayKcal">0</strong><small>千卡</small></div><div><span>本周</span><strong id="weekKcal">0</strong><small>千卡</small></div><div><span>本月</span><strong id="monthKcal">0</strong><small>千卡</small></div><p class="guide">手环热量是估算值，用于观察趋势，不建议等量增加饮食。</p></section></section>
+<section class="grid body-backup"><form id="bodyForm" class="card panel"><h2>身体变化 · 每周记录</h2><div class="form-row"><label>体重（kg）<input id="bodyWeight" type="number" step="0.1" value="73"></label><label>腰围（cm）<input id="waist" type="number" step="0.1"></label></div><div class="form-row"><label>胸围（cm）<input id="chest" type="number" step="0.1"></label><label>臂围（cm）<input id="arm" type="number" step="0.1"></label></div><button class="secondary">保存身体数据</button><div id="bodyHistory" class="body-history"></div></form><section class="card panel"><h2>数据备份</h2><p class="guide">换手机或清理浏览器前先导出。新手机打开网站后再导入。</p><div class="backup-actions"><button id="exportBtn" type="button">导出备份</button><label class="import-label">导入备份<input id="importFile" type="file" accept="application/json"></label></div></section></section>
+<section class="stats">
+<div class="card stat">
+<span>本月打卡</span>
+<strong id="monthCount">0</strong>
+<small>天</small>
+</div>
+<div class="card stat">
+<span>累计打卡</span>
+<strong id="totalCount">0</strong>
+<small>次</small>
+</div>
+<div class="card stat">
+<span>本周训练</span>
+<strong id="weekCount">0</strong>
+<small>天</small>
+</div>
+</section>
+<section class="grid">
+<form id="workoutForm" class="card panel">
+<h2>保存本次训练</h2>
+<label>训练地点<select id="gym"><option>铁锤健身·常青藤</option><option>唤燃星24小时·许坦东街店</option></select></label>
+<label>完成内容<select id="type">
+<option>训练1：胸和三头</option>
+<option>训练2：背和二头</option>
+<option>训练3：腿和肩</option>
+<option>恢复训练</option>
+<option>自由训练</option>
+<option>每日腹部</option>
+<option>坡度快走</option>
+<option>爬楼机</option>
+</select>
+</label>
+<div class="form-row">
+<label>时长（分钟）<input id="duration" type="number" min="1" value="60">
+</label>
+<label>感受<select id="feeling">
+<option>正常完成</option>
+<option>状态很好</option>
+<option>有点吃力</option>
+</select>
+</label>
+</div>
+<label>重量与次数<textarea id="note" placeholder="例如：卧推40kg 4×8">
+</textarea>
+</label>
+<button class="secondary">保存训练内容</button>
+<p id="saveHint" class="hint">
+</p>
+</form>
+<section class="card panel">
+<div class="section-title">
+<h2>最近记录</h2>
+<button class="text-btn" id="clearBtn">清空</button>
+</div>
+<div id="records" class="records">
+</div>
+</section>
+</section>
+<section class="card panel calendar-panel">
+<div class="section-title">
+<h2 id="calendarTitle">
+</h2>
+<div class="legend">
+<i>
+</i> 已打卡</div>
+</div>
+<div class="weekdays">
+<span>一</span>
+<span>二</span>
+<span>三</span>
+<span>四</span>
+<span>五</span>
+<span>六</span>
+<span>日</span>
+</div>
+<div id="calendar" class="calendar">
+</div>
+</section>
+</section>
+<footer>计划按健康新手设置。如有疾病、近期伤病或医生限制，请先咨询专业人员；胸痛、眩晕或尖锐疼痛时立即停止训练。</footer>
+</main>
+<div id="toast" class="toast">
+</div>
+<aside id="restTimer" class="rest-timer" aria-live="polite"><div><span>组间休息</span><strong id="restClock">01:30</strong><small id="restExercise"></small></div><div class="rest-actions"><button id="restMinus" type="button">−15秒</button><button id="restPlus" type="button">＋15秒</button><button id="restSkip" type="button">结束</button></div></aside>
+<script src="app.js">
+</script>
+</body>
+</html>
+
